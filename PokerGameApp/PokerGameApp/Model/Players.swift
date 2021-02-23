@@ -24,6 +24,7 @@ class Players {
         }
     }
     
+    //FIXME:- 이런 이렇게 정보를 주려하지말고(private 의미가 없어짐)-> 이 안에서 비교하는 로직을 짜기??
     func giveCardInfoOfPlayers() -> Array<Array<Card>> {
         var result: Array<Array<Card>> = []
         for player in players {

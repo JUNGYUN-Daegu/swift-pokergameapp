@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     let game = PokerGame()
     
     lazy var studSelectSegmentedControl: UISegmentedControl = {
-        let items = game.exportStudVariant()
+        let items = game.exportStudVariantOptions()
         let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0
         control.layer.cornerRadius = 5.0
@@ -136,7 +136,12 @@ class ViewController: UIViewController {
     func makeindividuallCardStacks(with cards: Array<Card>, with prizeImage: UIImage) -> UIStackView {
         let stackView = horizontalStackView()
         for card in cards {
-            let newCardImageView = card.makeCardImageView()
+            let newCardImageView: UIImageView
+            if let cardImage = UIImage(named: card.exportSuitAndValueInString()) {
+                newCardImageView = UIImageView(image: cardImage)
+            } else {
+                newCardImageView = UIImageView()
+            }
             stackView.addArrangedSubview(newCardImageView)
         }
         let prizeImageView: UIImageView = {
